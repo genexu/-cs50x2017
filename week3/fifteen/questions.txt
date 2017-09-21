@@ -1,0 +1,4 @@
+0. between 3 x 3 and 9 x 9
+1. bobble sort
+2. greet
+3. init, draw, move, won
