@@ -1,0 +1,62 @@
+1. What’s stdint.h?
+Ref http://en.wikipedia.org/wiki/Stdint.h
+The C99 standard includes definitions of several new integer types to enhance the portability of programs. The already available basic integer types were deemed insufficient, because their actual sizes are implementation defined and may vary across different systems. The new types are especially useful in embedded environments where hardware usually supports only several types and that support varies between different environments. All new types are defined in <inttypes.h> header (cinttypes header in C++) and also are available at <stdint.h> header (cstdint header in C++)
+Follow the ref, stdint is header file which provide and defind those new data type.
+
+2. What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+Those data type are definded in order to accord with MS data type rules.
+
+Ref https://msdn.microsoft.com/en-us/library/cc230309.aspx
+uint8_t defined as BYTE
+- A BYTE is an 8-bit unsigned
+
+uint32_t defined as DWORD
+- A DWORD is a 32-bit unsigned integer
+
+int32_t defined as LONG
+- A LONG is a 32-bit signed integer
+
+uint16_t defined as WORD
+- A WORD is a 16-bit unsigned integer
+
+3. How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+N mean N of bits
+BYTE = 8 bits / 8 = 1 bytes
+DWORD = 32 bits / 8 = 4 bytes
+LONG = 32 bits / 8 = 4 bytes
+WORD = 16 bits / 8 = 2 bytes
+
+4. What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? Leading bytes used to identify file formats (with high probability) are generally called "magic numbers."
+0xff and 0xd8
+
+5. What’s the difference between bfSize and biSize?
+bfSize: The size, in bytes, of the bitmap file.
+biSize: The number of bytes required by the structure.
+
+6. What does it mean if biHeight is negative?
+If biHeight is positive, the bitmap is a bottom-up DIB and its origin is the lower-left corner. If biHeight is negative, the bitmap is a top-down DIB and its origin is the upper-left corner.
+
+7. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+biBitCount
+
+8. Why might fopen return NULL in lines 24 and 32 of copy.c?
+fopen might return NULL when there have no file or we dont have permission to access this workspace.
+
+9. Why is the third argument to fread always 1 in our code?
+Ref https://www.tutorialspoint.com/cprogramming/c_file_io.htm
+size_t fread(void *ptr, size_t size_of_elements, size_t number_of_elements, FILE *a_file);
+
+The third argument to fread mean number_of_elements, in this case, element is already defined as BITMAPFILEHEADER, BITMAPINFOHEADER and RGBTRIPLE, so it will always be 1 in our code.
+
+10. What value does line 65 of copy.c assign to padding if bi.biWidth is 3?
+(4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4
+bi.biWidth = 3
+sizeof(RGBTRIPLE)) = 3 bytes
+(4 - (3 * 3) % 4) % 4 ＝ 3
+
+11. What does fseek do?
+Ref http://www.cplusplus.com/reference/cstdio/fseek/
+Sets the position indicator associated with the stream to a new position.
+
+12. What is SEEK_CUR?
+Current position of the file pointer
