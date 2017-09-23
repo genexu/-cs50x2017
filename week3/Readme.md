@@ -43,7 +43,7 @@ buket type?
 how many time will take wheㄙ data go big
 
 ## Sorting Humans
-[image1]
+![](https://github.com/genexu/cs50x2017/blob/master/week3/Screenshot-2016-fall-lectures-3-at-27m46s.png)
 
 ## Selection Sort
 select big(or smial) and switch
