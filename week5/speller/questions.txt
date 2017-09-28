@@ -1,0 +1,50 @@
+0. What is pneumonoultramicroscopicsilicovolcanoconiosis?
+It is the longest word in the English language published in a dictionary.
+
+1. According to its man page, what does getrusage do?
+The getrusage() function returns information describing the resources utilized by the current process, or all its terminated child processes.
+
+2. Per that same man page, how many members are in a variable of type struct rusage?
+There are 16 members are in a variable of type struct rusage.
+struct rusage {
+    struct timeval ru_utime; /* user time used */
+    struct timeval ru_stime; /* system time used */
+    long ru_maxrss;          /* max resident set size */
+    long ru_ixrss;           /* integral shared text memory size */
+    long ru_idrss;           /* integral unshared data size */
+    long ru_isrss;           /* integral unshared stack size */
+    long ru_minflt;          /* page reclaims */
+    long ru_majflt;          /* page faults */
+    long ru_nswap;           /* swaps */
+    long ru_inblock;         /* block input operations */
+    long ru_oublock;         /* block output operations */
+    long ru_msgsnd;          /* messages sent */
+    long ru_msgrcv;          /* messages received */
+    long ru_nsignals;        /* signals received */
+    long ru_nvcsw;           /* voluntary context switches */
+    long ru_nivcsw;          /* involuntary context switches */
+};
+
+3.  Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
+In my opinion, in this case we pass before and after by reference for saveing memory usage.
+If we pass variable by value to function, it will make a copy for each variable, it will also spend our memory space.
+
+4. Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.
+For loop fgetc until EOF, it mean loop will get file char one by one until `End Of File`.
+
+In the loop, there have three condition section:
+- Alphabetical characters and apostrophes (a-z and apostrophes)
+Asign char to word[] array by index, then index plus 1 for next char come in, if index grather then LENGTH (string length limit), consume remainder char of current word and set index to zero for next .
+
+- Numbers
+If come in char is digit, consume remainder char of current word, then set index to zero.
+
+- Not alphabetical characters and apostrophes and also not digit and index is not zero
+It mean we already collect the char of currect word, set the end signal \0 to word[] array, words plus one, words will show later as `WORDS IN TEXT`, record resource and check spelled, if misspelled, show the misspelled words and misspellings plus one, it will show later as `WORDS MISSPELLED`, then finally, set index to zero and continue loop until EOF.
+
+5. Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+We use fgetc function and check each char by self for make sure we have clear words for spelled checking, the fscanf function split and read string by `space`, `tab` and `\n` (next line signal), if we use fscanf function, we will get some string that we unnecessary to check.
+
+6. Why do you think we declared the parameters for check and load as const (which means "constant")?
+Becouse check and load parameters (word and dictionary) should never be changed.
+
