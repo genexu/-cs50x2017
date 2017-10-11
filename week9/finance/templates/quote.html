@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    {% if stack %}
+        A share of {{ stack.name }} ({{ stack.symbol }}) costs ${{ stack.price }}.
+    {% else %}
+        <form action="{{ url_for('quote') }}" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text" value="NFLX"/>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Quote</button>
+                </div>
+            </fieldset>
+        </form>
+    {% endif %}
+
+{% endblock %}
